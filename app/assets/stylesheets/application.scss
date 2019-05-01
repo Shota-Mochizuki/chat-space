@@ -23,9 +23,9 @@
     .user-menu {
       display: flex;
       justify-content: space-between;
-        .user-menu__new-group {
+        &__new-group {
           margin-left: 0.3rem;
-          .a {
+          a {
             color: #FFFFFF;
             text-decoration: none;
           }
@@ -61,7 +61,7 @@
       font-size: 20px;
       color: #333;
       margin-top: 35px;
-      .current-group__name {
+      &__name {
         font-size: 100%;
         font-weight: normal;
       }
@@ -72,7 +72,7 @@
         color: #999999;
       }
     }
-    .main-header__edit-btn {
+    &__edit-btn {
       height: 40px;
       line-height: 40px;
       padding: 0 20px;
@@ -88,12 +88,12 @@
     .upper-info {
       display: flex;
       margin-bottom: 10px;
-      .upper-info__user {
+      &__user {
         font-size: 16px;
         font-weight: bold;
         color: #434A54;
       }
-      .upper-info__date {
+      &__date {
         margin-left: 10px;
         font-size: 12px;
         color: #999999;
@@ -113,7 +113,7 @@
       .input-box {
           width: 100%;
           position: relative;
-          .input-box__text {
+          &__text {
             height: 50px;
             width: 100%;
             padding: 0 0 0 10px;
@@ -126,7 +126,7 @@
             top: 10px;
             right: 10px;
             cursor: pointer;
-            .image-label__input {
+            &__input {
               display: none;
             }
           }
