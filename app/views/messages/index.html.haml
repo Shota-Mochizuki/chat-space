@@ -1,47 +1,44 @@
-!!!
-%html
-  %body
-    .wrapper
-      .chat-side
-        .side-header
-          %p.side-header__user-name
-            SEO
-          %ul.user-menu
-            %li.user-menu__edit-user
-              %a{ href: '', style: "color:white;" }
-                %i.fa.fa-edit
-            %li.user-menu__new-group
-              %a{ href: '', style: "color:white;" }
-                %i.fa.fa-cog
-        .groups
-          .group__group-name
-            sample
-          .group__last-message
-            Good bye world
-      .chat-main
-        .main-header
-          .current-group
-            %h2.current-group__name
-              sample
-            %ul.member-list
-              Members seo neko
-          .main-header__edit-btn
-            Edit
-        .messages
-          .upper-info
-            %p.upper-info__user
-              seo 
-            %p.upper-info__date
-              2016/0921 06:16:55
-          %p.message__text
-            Hello world!
-        .form
-          %form{class: "new-message", id: "new_message", enctype: "multipart/form-data", action: "/groups/740/messages", method: "post"}
-            %input{name: "utf8", type: "hidden", value: "&#x2713;"}
-            %input{name: "authenticity_token", type: "hidden", value: "APlvDfU8D+EgMJbJleaQDjgTVF9JZB3aOgjb2PLJsLZ4706Zk3RnXr0LEnYUHS0uEIJrhDqmJiprTRqHdeF37g=="}
-            .input-box
-              %input{placeholder: "type a message", class: "input-box__text", type: "text", name: "message[content]", id: "message_content"}
-              %label{class: "image-label", for: "message_image"}
-                %i.fa.fa-image
-                %input{class: "image-label__input", type: "file", name: "message[image]", id: "message_image" }
-            %input{value: "send", class: "new-message__submit-btn", type: "submit", name: "comit"}
+.wrapper
+  .chat-side
+    .side-header
+      %p.side-header__user-name
+        SEO
+      %ul.user-menu
+        %li.user-menu__edit-user
+          = link_to '', style: "color:white;" do
+            %i.fa.fa-edit
+        %li.user-menu__new-group
+          = link_to '', style: "color:white;" do
+            %i.fa.fa-cog
+    .groups
+      .group__group-name
+        sample
+      .group__last-message
+        Good bye world
+  .chat-main
+    .main-header
+      .current-group
+        %h2.current-group__name
+          sample
+        %ul.member-list
+          Members seo neko
+      .main-header__edit-btn
+        Edit
+    .messages
+      .upper-info
+        %p.upper-info__user
+          seo 
+        %p.upper-info__date
+          2016/0921 06:16:55
+      %p.message__text
+        Hello world!
+    .form
+      %form{class: "new-message", id: "new_message", enctype: "multipart/form-data", action: "/groups/740/messages", method: "post"}
+        %input{name: "utf8", type: "hidden", value: "&#x2713;"}
+        %input{name: "authenticity_token", type: "hidden", value: "APlvDfU8D+EgMJbJleaQDjgTVF9JZB3aOgjb2PLJsLZ4706Zk3RnXr0LEnYUHS0uEIJrhDqmJiprTRqHdeF37g=="}
+        .input-box
+          %input{placeholder: "type a message", class: "input-box__text", type: "text", name: "message[content]", id: "message_content"}
+          %label{class: "image-label", for: "message_image"}
+            %i.fa.fa-image
+            %input{class: "image-label__input", type: "file", name: "message[image]", id: "message_image" }
+        %input{value: "send", class: "new-message__submit-btn", type: "submit", name: "comit"}
