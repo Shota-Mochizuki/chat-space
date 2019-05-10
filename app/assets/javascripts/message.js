@@ -1,36 +1,25 @@
 $(function(){
   function buildHTML(message){
-    var html;
+    var img;
     if( message.image == null) {
-      html = `<div class='message'>
-                  <div class='upper-info'>
-                    <p class='upper-info__user'>
-                      ${message.user_name}
-                    </p>
-                    <p class='upper-info__date'>
-                      ${message.created_at}
-                    </p>
-                  </div>
-                  <p class='message__text'>
-                    ${message.body}
-                  </p>
-                </div>`
-    } else {
-      html = `<div class='message'>
-                  <div class='upper-info'>
-                    <p class='upper-info__user'>
-                      ${message.user_name}
-                    </p>
-                    <p class='upper-info__date'>
-                      ${message.created_at}
-                    </p>
-                  </div>
-                  <p class='message__text'>
-                    ${message.body}
-                  </p>
-                  <img class="lower-message__image" src="${message.image}" />
-                </div>`
+      img = '';
+    } else{
+      img = `<img class="lower-message__image" src="${message.image}" />`
     }
+    var html = `<div class='message'>
+                  <div class='upper-info'>
+                    <p class='upper-info__user'>
+                      ${message.user_name}
+                    </p>
+                    <p class='upper-info__date'>
+                      ${message.created_at}
+                    </p>
+                  </div>
+                  <p class='message__text'>
+                    ${message.body}
+                  </p>
+                  ${img}
+                </div>`
     return html;
   }
   $(document).on('submit','#new_message', function(e) {
