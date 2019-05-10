@@ -30,21 +30,13 @@
       .main-header__edit-btn
         = link_to "Edit", edit_group_path(@group.id), style: "color:#38aef0;"
     .messages
-      - @messages.each do |message|
-        .upper-info
-          %p.upper-info__user
-            = message.user.name
-          %p.upper-info__date
-            = message.created_at.strftime("%Y/%m/%d %H:%M")
-        %p.message__text
-          = message.body
-          = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
+      = render 'messages/message'
     .form
-      = form_for [@group, @message], class: 'new' do |f|
+      = form_for [@group, @message] do |f|
         .new-message
           .input-box
             = f.text_field :body, class: 'input-box__text', placeholder: 'type a message'
             = f.label :image, class: 'image-label' do
               = fa_icon 'picture-o', class: 'icon'
               = f.file_field :image, class: 'image-label__input'
-          = f.submit 'Send', class: 'new-message__submit-btn'
+          = f.submit 'Send', class: 'new-message__submit-btn', id: 'new-message__submit-btn'
