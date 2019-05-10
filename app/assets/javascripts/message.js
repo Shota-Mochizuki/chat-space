@@ -47,8 +47,7 @@ $(function(){
     })
     .done(function(data){
       var html = buildHTML(data);
-      $('.input-box__text').val('')
-      $('.image-label__input').val('')
+      $('#new_message')[0].reset();
       $(".new-message__submit-btn").attr('disabled', false);
       $('.messages').animate({scrollTop: $('.messages').get(0).scrollHeight});
       $('.messages').append(html)
