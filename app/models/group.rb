@@ -10,4 +10,7 @@ class Group < ApplicationRecord
       'まだメッセージはありません。'
     end
   end
+  def show_user_name(id)
+    user_name = User.find(id).name
+  end
 end

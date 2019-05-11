@@ -7,29 +7,30 @@
         %ul
           - @group.errors.full_messages.each do |message|
             %li= message
+    .chat-group-form__field
+      .chat-group-form__field--left
+        = f.label :name, "グループ名", class: 'chat-group-form__label'
+      .chat-group-form__field--right
+        = f.text_field :name, name: 'group[name]', class: 'chat__group_name chat-group-form__input', placeholder: '=%group.name'
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
-        = f.label :name, class: 'chat-group-form__label'
+        = f.label :name, "チャットメンバーを追加", class: 'chat-group-form__label', for: "user-search-field"
       .chat-group-form__field--right
-        = f.text_field :name, class: 'chat__group_name chat-group-form__input', placeholder: '=@group.name'
-    .chat-group-form__field.clearfix
-      / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
-      /
-        <div class='chat-group-form__field--left'>
-        <label class="chat-group-form__label" for="chat_group_チャットメンバーを追加">チャットメンバーを追加</label>
-        </div>
-        <div class='chat-group-form__field--right'>
-        <div class='chat-group-form__search clearfix'>
-        <input class='chat-group-form__input' id='user-search-field' placeholder='追加したいユーザー名を入力してください' type='text'>
-        </div>
-        <div id='user-search-result'></div>
-        </div>
+        .chat-group-form__search.clearfix
+          = f.text_field :name, name: 'search', class: 'chat-group-form__input', placeholder: '追加したいユーザー名を入力してください', id: 'user-search-field'
+        .user-search-result 
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
         %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバー
       .chat-group-form__field--right
-        = f.collection_check_boxes :user_ids, User.all, :id, :name
-        / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
+        - @group.group_users.each do |user|
+          .chat-group-user.clearfix.js-chat-member
+            %input{name: 'group[user_ids][]', type: 'hidden', value: user.user_id}
+            %p.chat-group-user__name
+              = @group.show_user_name(user.user_id)
+            .user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn
+              - if(user.user_id != current_user.id)
+                削除
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
       .chat-group-form__field--right
