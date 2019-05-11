@@ -23,7 +23,7 @@
       .chat-group-form__field--left
         %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバー
       .chat-group-form__field--right
-        = render 'groups/member'
+        = render partial: "user", collection: @group.group_users
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
       .chat-group-form__field--right
