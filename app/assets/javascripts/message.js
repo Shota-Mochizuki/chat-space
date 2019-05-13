@@ -18,8 +18,11 @@ $(function(){
     return html;
   }
   var reloadMessages = function() {
-    var last_message_id = $('.message').length ? $('.message:last').data('messageId') : 0 ;
     var current_group_id = $('.current-group__name').data('groupId');
+    if( location.pathname !== `/groups/${current_group_id}/messages`){
+      return;
+    }
+    var last_message_id = $('.message').length ? $('.message:last').data('messageId') : 0 ;
     var url = `/groups/${current_group_id}/api/messages`;
     $.ajax({
       url: url,
