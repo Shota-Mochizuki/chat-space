@@ -18,9 +18,10 @@ $(function(){
     return html;
   }
   var reloadMessages = function() {
-    var last_message_id = $('.message').length ? $('.message:last').attr('data-message-id') : 0 ;
-    var current_group_id = $('.current-group__name').attr('data-group-id');
-    var url = '/groups/' + current_group_id + '/api/messages';
+    var last_message_id = $('.message').length ? $('.message:last').data('messageId') : 0 ;
+    var current_group_id = $('.current-group__name').data('groupId');
+    //var url = '/groups/' + current_group_id + '/api/messages';
+    var url = `/groups/${current_group_id}/api/messages`;
     $.ajax({
       url: url,
       type: 'GET',
@@ -39,7 +40,7 @@ $(function(){
       });
     })
     .fail(function() {
-      console.log('error');
+      alert('メッセージの自動更新に失敗しました');
     });
   };
   $(document).on('submit','#new_message', function(e) {
