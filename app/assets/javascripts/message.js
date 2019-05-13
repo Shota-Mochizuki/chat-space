@@ -20,7 +20,6 @@ $(function(){
   var reloadMessages = function() {
     var last_message_id = $('.message').length ? $('.message:last').data('messageId') : 0 ;
     var current_group_id = $('.current-group__name').data('groupId');
-    //var url = '/groups/' + current_group_id + '/api/messages';
     var url = `/groups/${current_group_id}/api/messages`;
     $.ajax({
       url: url,
