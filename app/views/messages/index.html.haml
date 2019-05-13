@@ -30,7 +30,7 @@
       .main-header__edit-btn
         = link_to "Edit", edit_group_path(@group.id), style: "color:#38aef0;"
     .messages
-      = render 'messages/message'
+      = render partial: "message", collection: @messages
     .form
       = form_for [@group, @message] do |f|
         .new-message
