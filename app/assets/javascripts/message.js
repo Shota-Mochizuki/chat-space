@@ -18,32 +18,31 @@ $(function(){
     return html;
   }
   var reloadMessages = function() {
-    var current_group_id = $('.current-group__name').data('groupId');
-    if( location.pathname !== `/groups/${current_group_id}/messages`){
-      return;
-    }
-    var last_message_id = $('.message').length ? $('.message:last').data('messageId') : 0 ;
-    var url = `/groups/${current_group_id}/api/messages`;
-    $.ajax({
-      url: url,
-      type: 'GET',
-      data: {id: last_message_id},
-      dataType: 'json',
-    })
-    .done(function(messages) {
-      var insertHTML = '';
-      messages.forEach(function(message){
-        if($('.message').length == 0){
-          $('.messages').append(buildHTML(message))
-        } else{
-          $(buildHTML(message)).insertAfter('.message:last');
-        }
-        $('.messages').animate({scrollTop: $('.messages').get(0).scrollHeight});
+    if (location.href.match(/\/groups\/\d+\/messages/)) {
+      var last_message_id = $('.message').length ? $('.message:last').data('messageId') : 0
+      var current_group_id = $('.current-group__name').data('groupId');
+      var url = `/groups/${current_group_id}/api/messages`;
+      $.ajax({
+        url: url,
+        type: 'GET',
+        data: {id: last_message_id},
+        dataType: 'json',
+      })
+      .done(function(messages) {
+        var insertHTML = '';
+        messages.forEach(function(message){
+          if($('.message').length == 0){
+            $('.messages').append(buildHTML(message))
+          } else{
+            $(buildHTML(message)).insertAfter('.message:last');
+          }
+          $('.messages').animate({scrollTop: $('.messages').get(0).scrollHeight});
+        });
+      })
+      .fail(function() {
+        alert('メッセージの自動更新に失敗しました');
       });
-    })
-    .fail(function() {
-      alert('メッセージの自動更新に失敗しました');
-    });
+    }
   };
   $(document).on('submit','#new_message', function(e) {
     e.preventDefault();
